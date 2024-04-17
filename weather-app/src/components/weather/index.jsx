@@ -87,7 +87,7 @@ export default function Weather() {
     return <div>
         <Search search={search} setSearch={setSearch} handleSearch={handleSearch} />
         {
-            loading ? <div>loading</div> :
+            loading ? <div className="loading">loading</div> :
                 <div>
                     <div className="city-name">
                         <h2>{location?.name}</h2>
@@ -97,13 +97,13 @@ export default function Weather() {
 
                     </div>
                     <div>
-                        <div>{weatherData?.current?.temperature_2m}°C</div>
+                        <div className="temp">{weatherData?.current?.temperature_2m}°C</div>
                         <p className="description">
                             {getDayNight()}
                         </p>
                     </div>
                     <div>
-                        <div>
+                        <div className="weather-info">
                             <p>Wind Speed {weatherData?.current?.wind_speed_10m}km/h</p>
                         </div>
                     </div>

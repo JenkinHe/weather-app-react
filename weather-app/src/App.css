@@ -35,3 +35,57 @@ body{
   padding: 13px 15px;
 
 }
+
+.App{
+  text-align: center;
+  margin: 50px auto 0px;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 20px;
+  height: 470px;
+  padding: 20px 15px;
+  background: lightblue;
+
+}
+
+.city-name{
+  margin-bottom: 10px;
+
+}
+
+.loading{
+  font-size: 60px;
+  font-weight: bold;
+  color: black;
+}
+.date{
+  font-size: 18px;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.temp{
+  font-size: 64px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+.description{
+  color: black;
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.weather-info{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+  padding: 0px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
