@@ -40,11 +40,13 @@ export default function Weather(){
 
             const data = await response.json()
             if(data){
-                setWeatherData(data);
+                setWeatherData(prevWeatherData => {
+                    return data; // or any manipulation based on prevWeatherData
+                });
                 setLoading(false);
             }
 
-            console.log(data)
+            
 
         }catch(e){
             setLoading(false);
@@ -59,10 +61,22 @@ export default function Weather(){
 
     useEffect(()=>{
         fetchWeatherData("sydney");
+        
     },[]);
+    useEffect(() => {
+        console.log(weatherData);
+    }, [weatherData]);
 
     return <div>
         <Search search={search} setSearch={setSearch} handleSearch={handleSearch}/>
+        {
+            loading?<div>loading</div>:
+            <div>
+                <div className="city-name">
+                    <h2></h2>
+                </div>
+            </div>
+        }
         weather
     </div>
 }
