@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Search from "../search";
 
 
@@ -19,8 +19,8 @@ export default function Weather(){
             const response =await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${param}&count=1&language=en&format=json`)
 
             const data= await response.json();
-            setLocation({long:data.longitude,lat:data.latitude});
             if(data){
+                setLocation({long:data.results[0].longitude,lat:data.results[0].latitude});
                 setLoading(false);
             }
             
@@ -34,11 +34,13 @@ export default function Weather(){
     async function fetchWeatherData(param){
         try{
             setLoading(true);
-            fetchLocationData(param);
+            await fetchLocationData(param);
+            
             const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.long}&current=temperature_2m,is_day,wind_speed_10m&hourly=temperature_2m`);
 
             const data = await response.json()
             if(data){
+                setWeatherData(data);
                 setLoading(false);
             }
 
@@ -54,6 +56,10 @@ export default function Weather(){
         fetchWeatherData(search);
 
     }
+
+    useEffect(()=>{
+        fetchWeatherData("sydney");
+    },[]);
 
     return <div>
         <Search search={search} setSearch={setSearch} handleSearch={handleSearch}/>
